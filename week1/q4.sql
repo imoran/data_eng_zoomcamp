@@ -1,4 +1,4 @@
--- On which day it was the largest tip in January? (note: it's not a typo, it's "tip", not "trip")
+-- On which day was the largest tip in January? (note: it's not a typo, it's "tip", not "trip")
 
 SELECT
 	CAST(tpep_pickup_datetime AS DATE) as "day",
@@ -8,4 +8,7 @@ FROM
 GROUP BY
 	t.tip_amount,
 	"day"
-ORDER BY tip_amount DESC
+ORDER BY 
+	tip_amount DESC
+LIMIT 
+	1
