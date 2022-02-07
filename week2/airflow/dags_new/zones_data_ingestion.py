@@ -58,8 +58,8 @@ default_args = {
     "retries": 1,
 }
 
-taxi_workflow = DAG(
-    dag_id="taxi_ingestion_gcs_dag",
+zones_data_workflow = DAG(
+    dag_id="zones_ingestion_gcs_dag",
     schedule_interval="0 6 2 * *",
     default_args=default_args,
     start_date=datetime(2019, 1, 1),
@@ -68,7 +68,7 @@ taxi_workflow = DAG(
     catchup=True 
 )
 
-with taxi_workflow:
+with zones_data_workflow:
     download_zones_dataset_task = BashOperator(
         task_id="download_zones_dataset_task",
         bash_command=f"curl -sS {URL_TEMPLATE} > {AIRFLOW_HOME}/{FILE_NAME}"
