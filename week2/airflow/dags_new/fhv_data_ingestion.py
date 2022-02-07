@@ -63,7 +63,7 @@ fhv_workflow = DAG(
     schedule_interval="0 6 2 * *",
     default_args=default_args,
     start_date=datetime(2019, 1, 1),
-    end_date=datetime(2021, 2, 1),
+    end_date=datetime(2020, 2, 1),
     tags=['dtc-de'],
     catchup=True 
 )

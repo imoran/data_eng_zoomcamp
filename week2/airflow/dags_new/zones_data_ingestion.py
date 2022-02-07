@@ -3,6 +3,7 @@ import logging
 from datetime import date, datetime
 
 from airflow import DAG
+from airflow.utils.dates import days_ago
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
@@ -56,14 +57,13 @@ default_args = {
     "owner": "airflow",
     "depends_on_past": False,
     "retries": 1,
+    "start_date": days_ago(1),
 }
 
 zones_data_workflow = DAG(
     dag_id="zones_ingestion_gcs_dag",
     schedule_interval="0 6 2 * *",
     default_args=default_args,
-    start_date=datetime(2019, 1, 1),
-    end_date=datetime(2021, 2, 1),
     tags=['dtc-de'],
     catchup=True 
 )
